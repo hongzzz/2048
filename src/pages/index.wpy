@@ -1,0 +1,39 @@
+<style lang="less">
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+</style>
+
+<template>
+  <view class="container">
+    <game></game>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import game from '../components/game'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '2048'
+    }
+    components = {
+      game
+    }
+    data = {
+      userInfo: {}
+    }
+    methods = {}
+
+    onLoad () {
+      // 获取用户数据
+      wepy.getUserInfo().then((res) => {
+        this.userInfo = res.userInfo
+        this.$apply()
+      })
+    }
+  }
+</script>
